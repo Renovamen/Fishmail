@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "ant-design-vue": "^1.6.5",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "nuxt": "^2.14.6",
     "stylus": "^0.54.8",

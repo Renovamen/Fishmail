@@ -1,59 +1,116 @@
 <template>
-  <div calss="mail-list">
+  <div class="mail-list">
+    <header class="header">
+      <div class="select-all">
+        <a-checkbox></a-checkbox>
+      </div>
+      <div class="operation">
+        <a-button>
+          <a-icon type="reload" />
+        </a-button>
+        <a-button>
+          <a-icon type="more" />
+        </a-button>
+      </div>
+
+      <div class="pagination">
+        <div class="num">第 1 - 27 行，共 27 行</div>
+        <div class="pager">
+          <a-button>
+            <a-icon type="left" />
+          </a-button>
+          <a-button>
+            <a-icon type="right" />
+          </a-button>
+        </div>
+      </div>
+    </header>
     <a-table
       :columns="columns"
       :data-source="data"
-      size="middle"
       :showHeader="false"
       :row-selection="selectItem"
-    />
+    >
+      <div
+        slot="articleTitle"
+        slot-scope="text, record"
+        @click="goToArticle(record.id)"
+      >
+        {{ text }}
+      </div>
+      <div class="time" slot="time" slot-scope="text">{{ text }}</div>
+    </a-table>
   </div>
 </template>
 
 <script>
+import api from '../api/index'
+
 const columns = [
   {
-    title: 'name',
-    dataIndex: 'name',
+    title: 'hint',
+    dataIndex: 'hint',
     width: 240
   },
   {
-    title: 'email',
-    dataIndex: 'email',
+    title: 'articleTitle',
+    dataIndex: 'articleTitle',
+    scopedSlots: { customRender: 'articleTitle' },
     ellipsis: true
   },
   {
     title: 'time',
     dataIndex: 'time',
+    scopedSlots: { customRender: 'time' },
     width: 100
-  }
-]
-const data = [
-  {
-    key: '1',
-    name: 'Gitee 开源托管平台',
-    email: 'Gitee 源代码托管平台 中文界面 更友好 汇聚众多本土原创开源项目，托管项目超 1000 万，超 500 万开发者选择',
-    time: '2020/10/14'
-  },
-  {
-    key: '2',
-    name: '华为云',
-    email: '「华为云」云产品免费试用 「华为云」云服务器，数据库，存储等 40+ 云产品 0 元试用',
-    time: '2020/10/14'
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    email: 'Hi! Sidney No. 1 Lake Park.',
-    time: '2020/5/8'
   }
 ]
 
 export default {
   data() {
     return {
-      data,
+      data: [],
       columns
+    }
+  },
+  mounted() {
+    this.getList()
+  },
+  methods: {
+    async getList() {
+      api.getNews().then(res => {
+        this.data = res.data.stories
+        for (let i = 0; i < this.data.length; i++) {
+          this.data[i].key = i
+          this.data[i].time = this.formatDate(res.data.date)
+          this.data[i].articleTitle = this.data[i].title
+
+          const readTime = this.getReadTime(this.data[i].hint)
+          if(readTime) {
+            this.data[i].articleTitle += ` — ${readTime} 分钟阅读`
+            this.data[i].hint = this.data[i].hint.slice(0, - (8 + readTime.length))
+          }
+        }
+      })
+    },
+    formatDate(value) {
+      return value.slice(0, 4) + '/' + value.slice(4, 6) + '/' + value.slice(6, 8)
+    },
+    getReadTime(hint) {
+      const timeMatch = hint.match(
+        / · (.*?) 分钟阅读/
+      )
+      console.log(timeMatch)
+      if(!timeMatch) return null
+      return timeMatch[1]
+    },
+    goToArticle(id) {
+      this.$router.push({
+				path: "article",
+				query: {
+					id: id
+				}
+			})
     }
   },
   computed: {
@@ -74,10 +131,25 @@ export default {
 </script>
 
 <style lang="stylus">
-table
-  font-size 14px
-  tr
-    background-color #F4F7F7
-  td, th
-    padding 8px !important
+.mail-list
+  .header
+    padding-right 28px
+    .select-all
+      width 60px
+      padding-left 22px
+    .operation
+      margin-left -5px
+  .article
+  table
+    font-size 14px
+    margin-top 48px
+    tr
+      background-color #F4F7F7
+      cursor pointer
+    td, th
+      padding 8px !important
+    .time
+      font-size 12px
+      text-align right
+      padding-right 5px
 </style>

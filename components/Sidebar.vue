@@ -74,6 +74,7 @@ $header-height = 64px
   height 100%
   left 0
   margin-top $header-height
+  z-index 20
   .menu
     padding-right 18px
     margin-top 20px

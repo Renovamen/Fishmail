@@ -35,20 +35,11 @@ $header-height = 64px
   border-left 1px solid #eee
   text-align center
   padding-top 8px
+  z-index 20
   button
-    padding 0
-    border-radius 50%
-    transition all 0s
-    border none
-    box-shadow none
-    color #5F6368
     width 40px
     height 40px
     margin-bottom 16px
-    &:hover,
-    &:active
-      background #EFF0F0
-      color #5F6368
     img
       height 20px
       width 20px

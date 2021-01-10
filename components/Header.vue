@@ -53,17 +53,7 @@ $header-height = 64px
   border-bottom 1px solid #eee
   padding 0
   display flex
-  button
-    padding 0
-    border-radius 50%
-    transition all 0s
-    border none
-    box-shadow none
-    color #5F6368
-    &:hover,
-    &:active
-      background #EFF0F0
-      color #5F6368
+  z-index 30
   .sitename
     width $sidebar-width
     padding 0 13px
@@ -123,7 +113,7 @@ $header-height = 64px
         margin-left 5px
         .anticon
           font-size 20px
-          margin-top 3px
+          margin-top 5px
       .avatar
         margin-left 8px
         img
