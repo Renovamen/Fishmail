@@ -30,6 +30,7 @@
       :data-source="data"
       :showHeader="false"
       :row-selection="selectItem"
+      :pagination="false"
     >
       <div
         slot="articleTitle"
@@ -100,7 +101,6 @@ export default {
       const timeMatch = hint.match(
         / · (.*?) 分钟阅读/
       )
-      console.log(timeMatch)
       if(!timeMatch) return null
       return timeMatch[1]
     },

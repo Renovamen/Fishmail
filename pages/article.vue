@@ -57,7 +57,7 @@
       </div>
     </header>
     <div class="article">
-      <h2 class="title">{{ data.title }}</h2>
+      <h2 class="title">{{ title }}</h2>
       <div v-html="data.body" />
     </div>
   </div>
@@ -69,7 +69,8 @@ import api from '../api/index'
 export default {
   data() {
 		return {
-      data: ''
+      data: '',
+      title: ''
 		}
 	},
 	mounted() {
@@ -80,7 +81,15 @@ export default {
       const id = this.$route.query.id
       api.getNewsById(id).then(res => {
         this.data = res.data
+        this.title = res.data.title + this.getTitle(this.data.body)
       })
+    },
+    getTitle(html) {
+      const titleMatch = html.match(
+        /<h2 class="question-title">(.*?)<\/h2>/
+      )
+      if(titleMatch[1] === '') return ''
+      return ' — ' + titleMatch[1]
     }
   }
 }
@@ -105,6 +114,8 @@ export default {
     h2.title
       font-weight 400
       font-size 22px
+    h2.question-title
+      display none
     .meta
       margin-top 20px
       img.avatar, span.author, span.bio
@@ -123,6 +134,7 @@ export default {
       span.bio
         color #555555
     .content
+      margin-top 10px
       p
         line-height 1.7
         margin-bottom 10px

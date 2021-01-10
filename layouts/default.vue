@@ -1,7 +1,7 @@
 <template>
   <a-layout class="mail-layout">
     <Header @toggle-collapsed="toggleCollapsed" />
-    <a-layout>
+    <a-layout :class="{ 'side-collapsed': collapsed }">
       <Sidebar :collapsed="collapsed" />
       <SidebarRight />
       <a-layout class="mailbox">
@@ -39,6 +39,7 @@ export default {
 
 <style lang="stylus">
 $sidebar-width = 255px
+$sidebar-width-collapsed = 80px
 $sidebar-width-right = 55px
 $header-height = 64px
 
@@ -103,4 +104,9 @@ body
               margin-right -2px
               .anticon
                 font-size 10px
+  .side-collapsed
+    .mailbox
+      margin-left $sidebar-width-collapsed
+      .content .header
+        width calc(100% - 80px - 55px)
 </style>
