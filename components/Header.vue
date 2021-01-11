@@ -1,12 +1,14 @@
 <template>
   <a-layout-header class="header">
     <div class="sitename">
-      <a-button
-        class="sidebar-togger"
-        @click="$emit('toggle-collapsed')"
-      >
-        <a-icon type="menu" />
-      </a-button>
+      <a-tooltip title="主菜单" placement="bottom">
+        <a-button
+          class="sidebar-togger"
+          @click="$emit('toggle-collapsed')"
+        >
+          <a-icon type="menu" />
+        </a-button>
+      </a-tooltip>
       <div class="logo">
         <img src="/logo.png" />
       </div>
@@ -25,15 +27,21 @@
         </a-tooltip>
       </a-input>
       <div class="info">
-        <a-button>
-          <a-icon type="question-circle" />
-        </a-button>
-        <a-button>
-          <a-icon type="setting" />
-        </a-button>
-        <a-button>
-          <a-icon type="appstore" />
-        </a-button>
+        <a-tooltip title="支持" placement="bottom">
+          <a-button>
+            <a-icon type="question-circle" />
+          </a-button>
+        </a-tooltip>
+        <a-tooltip title="设置" placement="bottom">
+          <a-button>
+            <a-icon type="setting" />
+          </a-button>
+        </a-tooltip>
+        <a-tooltip title="Google 应用" placement="bottom">
+          <a-button>
+            <a-icon type="appstore" />
+          </a-button>
+        </a-tooltip>
         <a-button class="avatar">
           <img src="/avatar.svg" />
         </a-button>

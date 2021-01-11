@@ -6,7 +6,7 @@
       <SidebarRight />
       <a-layout class="mailbox">
         <a-layout-content class="content">
-          <Nuxt />
+          <Nuxt keep-alive />
         </a-layout-content>
       </a-layout>
     </a-layout>
@@ -111,4 +111,17 @@ body
       margin-left $sidebar-width-collapsed
       .content .header
         width calc(100% - 80px - 55px)
+
+.ant-tooltip
+  .ant-tooltip-arrow
+    display none
+  .ant-tooltip-inner
+    font 500 12px 'Roboto', arial, sans-serif
+    padding 4px 8px
+    min-height 14px
+    min-width auto
+    line-height 16px
+    letter-spacing 0.8px
+    margin-top -6px
+    background rgba(60, 64, 67, 0.9)
 </style>

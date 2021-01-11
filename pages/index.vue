@@ -2,26 +2,36 @@
   <div class="mail-list">
     <header class="header">
       <div class="select-all">
-        <a-checkbox></a-checkbox>
+        <a-tooltip title="选择" placement="bottom">
+          <a-checkbox></a-checkbox>
+        </a-tooltip>
       </div>
       <div class="operation">
-        <a-button>
-          <a-icon type="reload" />
-        </a-button>
-        <a-button>
-          <a-icon type="more" />
-        </a-button>
+        <a-tooltip title="刷新" placement="bottom">
+          <a-button @click="refresh()">
+            <a-icon type="reload" />
+          </a-button>
+        </a-tooltip>
+        <a-tooltip title="更多操作" placement="bottom">
+          <a-button>
+            <a-icon type="more" />
+          </a-button>
+        </a-tooltip>
       </div>
 
       <div class="pagination">
         <div class="num">第 {{ page }} 页，共 {{ data.length }} 行</div>
         <div class="pager">
-          <a-button @click="goPage(-1)">
-            <a-icon type="left" />
-          </a-button>
-          <a-button @click="goPage(1)">
-            <a-icon type="right" />
-          </a-button>
+          <a-tooltip title="较新" placement="bottom">
+            <a-button @click="goPage(-1)">
+              <a-icon type="left" />
+            </a-button>
+          </a-tooltip>
+          <a-tooltip title="较旧" placement="bottom">
+            <a-button @click="goPage(1)">
+              <a-icon type="right" />
+            </a-button>
+          </a-tooltip>
         </div>
       </div>
     </header>
@@ -46,6 +56,7 @@
 
 <script>
 import api from '../api/index'
+import { mapState } from 'vuex'
 
 const columns = [
   {
@@ -73,20 +84,30 @@ export default {
       data: [],
       columns,
       page: 1,
+      latestDate: ''
     }
   },
-  mounted() {
-    this.getList()
+  computed: mapState({
+		lists: state => state.lists
+	}),
+  async mounted() {
+    await this.refresh()
   },
   methods: {
     async getList() {
-      this.data = []
-      await this.getListByDate((this.page - 1) * 3)
-      await this.getListByDate((this.page - 1) * 3 + 1)
-      await this.getListByDate((this.page - 1) * 3 + 2)
+      if(this.lists.hasOwnProperty(this.page)) {
+        this.data = this.lists[this.page]
+      }
+      else {
+        this.data = []
+        await this.getListByDate((this.page - 1) * 3)
+        await this.getListByDate((this.page - 1) * 3 + 1)
+        await this.getListByDate((this.page - 1) * 3 + 2)
+        this.lists[this.page] = this.data
+      }
     },
     async getListByDate(num) {
-      api.getNewsByDate(this.getDate(num)).then(res => {
+      await api.getNewsByDate(this.getDate(num)).then(res => {
         const list = res.data.stories
         for (let i = 0; i < list.length; i++) {
           let item = {
@@ -101,18 +122,37 @@ export default {
             item.hint = item.hint.slice(0, - (8 + readTime.length))
           }
           this.data.push(item)
-          console.log(item.key)
         }
       })
     },
+    async getLatestDate() {
+      await api.getNews().then(res => {
+        this.latestDate = res.data.date
+      })
+    },
+    async refresh() {
+      this.page = 1
+      this.lists = {}
+      await this.getLatestDate()
+      await this.getList()
+    },
     getDate(num) {
       const d = new Date()
+
+      const initY = parseInt(this.latestDate.slice(0, 4))
+      const initM = parseInt(this.latestDate.slice(4, 6))
+      const initD = parseInt(this.latestDate.slice(6, 8))
+
+      d.setFullYear(initY)
+      d.setMonth(initM - 1)
+      d.setDate(initD)
+
       d.setDate(d.getDate() + 1 - num)
-      
+
       const year = d.getFullYear(),
             month = (d.getMonth() + 1).toString().padStart(2, '0'),
             day = d.getDate().toString().padStart(2, '0')
-      
+
       return year + month + day
     },
     formatDate(value) {
