@@ -14,7 +14,10 @@ export default {
 	async getNews() {
 		return await axios.get(NewsAPI)
 	},
-	getNewsById(id) {
-		return axios.get(NewsIdAPI + id)
+	async getNewsByDate(date) {
+		return await axios.get(NewsDateAPI + date)
+	},
+	async getNewsById(id) {
+		return await axios.get(NewsIdAPI + id)
 	}
 }

@@ -42,6 +42,7 @@ $sidebar-width = 255px
 $sidebar-width-collapsed = 80px
 $sidebar-width-right = 55px
 $header-height = 64px
+$page-header-height = 48px
 
 body
   font-family Helvetica, Arial, sans-serif
@@ -63,8 +64,8 @@ body
   .mailbox
     margin-left $sidebar-width
     margin-right $sidebar-width-right
-    margin-top $header-height
-    height calc(100% - 64px)
+    margin-top $header-height + $page-header-height
+    height calc(100% - 64px - 48px)
     background #fff
     &::-webkit-scrollbar
       width 10px
@@ -77,7 +78,8 @@ body
       .header
         width calc(100% - 255px - 55px)
         z-index 10
-        height 48px
+        height $page-header-height
+        margin-top (- $page-header-height)
         display flex
         flex 1
         align-items center

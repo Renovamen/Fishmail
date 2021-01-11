@@ -14,12 +14,12 @@
       </div>
 
       <div class="pagination">
-        <div class="num">第 1 - 27 行，共 27 行</div>
+        <div class="num">第 {{ page }} 页，共 {{ data.length }} 行</div>
         <div class="pager">
-          <a-button>
+          <a-button @click="goPage(-1)">
             <a-icon type="left" />
           </a-button>
-          <a-button>
+          <a-button @click="goPage(1)">
             <a-icon type="right" />
           </a-button>
         </div>
@@ -35,7 +35,7 @@
       <div
         slot="articleTitle"
         slot-scope="text, record"
-        @click="goToArticle(record.id)"
+        @click="goToArticle(record.key)"
       >
         {{ text }}
       </div>
@@ -71,7 +71,8 @@ export default {
   data() {
     return {
       data: [],
-      columns
+      columns,
+      page: 1,
     }
   },
   mounted() {
@@ -79,20 +80,40 @@ export default {
   },
   methods: {
     async getList() {
-      api.getNews().then(res => {
-        this.data = res.data.stories
-        for (let i = 0; i < this.data.length; i++) {
-          this.data[i].key = i
-          this.data[i].time = this.formatDate(res.data.date)
-          this.data[i].articleTitle = this.data[i].title
-
-          const readTime = this.getReadTime(this.data[i].hint)
-          if(readTime) {
-            this.data[i].articleTitle += ` — ${readTime} 分钟阅读`
-            this.data[i].hint = this.data[i].hint.slice(0, - (8 + readTime.length))
+      this.data = []
+      await this.getListByDate((this.page - 1) * 3)
+      await this.getListByDate((this.page - 1) * 3 + 1)
+      await this.getListByDate((this.page - 1) * 3 + 2)
+    },
+    async getListByDate(num) {
+      api.getNewsByDate(this.getDate(num)).then(res => {
+        const list = res.data.stories
+        for (let i = 0; i < list.length; i++) {
+          let item = {
+            time: this.formatDate(res.data.date),
+            articleTitle: list[i].title,
+            hint: list[i].hint,
+            key: list[i].id
           }
+          const readTime = this.getReadTime(list[i].hint)
+          if(readTime) {
+            item.articleTitle += ` — ${readTime} 分钟阅读`
+            item.hint = item.hint.slice(0, - (8 + readTime.length))
+          }
+          this.data.push(item)
+          console.log(item.key)
         }
       })
+    },
+    getDate(num) {
+      const d = new Date()
+      d.setDate(d.getDate() + 1 - num)
+      
+      const year = d.getFullYear(),
+            month = (d.getMonth() + 1).toString().padStart(2, '0'),
+            day = d.getDate().toString().padStart(2, '0')
+      
+      return year + month + day
     },
     formatDate(value) {
       return value.slice(0, 4) + '/' + value.slice(4, 6) + '/' + value.slice(6, 8)
@@ -111,6 +132,10 @@ export default {
 					id: id
 				}
 			})
+    },
+    goPage(value) {
+      this.page += value
+      this.getList()
     }
   },
   computed: {
@@ -139,10 +164,8 @@ export default {
       padding-left 22px
     .operation
       margin-left -5px
-  .article
   table
     font-size 14px
-    margin-top 48px
     tr
       background-color #F4F7F7
       cursor pointer

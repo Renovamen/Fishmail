@@ -57,7 +57,7 @@
       </div>
     </header>
     <div class="article">
-      <h2 class="title">{{ title }}</h2>
+      <h1 class="title">{{ data.title }}</h1>
       <div v-html="data.body" />
     </div>
   </div>
@@ -69,8 +69,7 @@ import api from '../api/index'
 export default {
   data() {
 		return {
-      data: '',
-      title: ''
+      data: ''
 		}
 	},
 	mounted() {
@@ -81,15 +80,7 @@ export default {
       const id = this.$route.query.id
       api.getNewsById(id).then(res => {
         this.data = res.data
-        this.title = res.data.title + this.getTitle(this.data.body)
       })
-    },
-    getTitle(html) {
-      const titleMatch = html.match(
-        /<h2 class="question-title">(.*?)<\/h2>/
-      )
-      if(titleMatch[1] === '') return ''
-      return ' — ' + titleMatch[1]
     }
   }
 }
@@ -108,53 +99,59 @@ export default {
         margin-left 7px
         margin-right 12px
   .article
-    padding 65px 30px 50px 73px
+    padding 17px 30px 20px 73px
     position relative
     color #202124
-    h2.title
+    h1, h2
       font-weight 400
+    h1
       font-size 22px
-    h2.question-title
-      display none
-    .meta
-      margin-top 20px
-      img.avatar, span.author, span.bio
-        vertical-align middle
-      img.avatar
-        width 40px
-        height 40px
-        border-radius 50%
-        margin-left -55px
-        border 1px solid #eee
-      span.author, span.bio
-        letter-spacing .2px
-      span.author
-        font-weight bold
-        margin-left 11px
-      span.bio
-        color #555555
-    .content
-      margin-top 10px
-      p
-        line-height 1.7
-        margin-bottom 10px
-      .content-image
-        width inherit
-        max-width 100%
-        margin 30px auto
-        display block
-      ul
-        padding-left 18px
-        li
+    h2
+      font-size 18px
+    .question
+      &:not(:last-child)
+        border-bottom 1px solid #eee
+        margin-bottom 25px
+      .meta
+        margin-top 20px
+        img.avatar, span.author, span.bio
+          vertical-align middle
+        img.avatar
+          width 40px
+          height 40px
+          border-radius 50%
+          margin-left -55px
+          border 1px solid #eee
+        span.author, span.bio
+          letter-spacing .2px
+        span.author
+          font-weight bold
+          margin-left 11px
+        span.bio
+          color #555555
+      .content
+        margin-top 10px
+        p
           line-height 1.7
-      hr
-        border 0
-        height 1px
-        background-color #E7E7E7
-        margin 20px 0
+          margin-bottom 10px
+        .content-image
+          width inherit
+          max-width 100%
+          margin 30px auto
+          display block
+        ul
+          padding-left 18px
+          li
+            line-height 1.7
+        hr
+          border 0
+          height 1px
+          background-color #E7E7E7
+          margin 20px 0
     .view-more
       text-align center
-      margin-top 80px
+      margin-top 50px
+      margin-bottom 35px
       a
         border 1px solid #2995FC
         border-radius 5px
