@@ -204,4 +204,16 @@ export default {
         &:hover
           background #F6FBFF
           color $accent-color
+  @media (max-width: 1024px)
+    .header
+      padding 0 8px
+      .operation
+        display none
+    .article
+      padding-left 10px
+      padding-right 10px
+      .question
+        .meta
+          img.avatar
+            margin-left 0
 </style>

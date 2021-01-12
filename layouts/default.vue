@@ -2,7 +2,7 @@
   <a-layout class="mail-layout">
     <Header @toggle-collapsed="toggleCollapsed" />
     <a-layout :class="{ 'side-collapsed': collapsed }">
-      <Sidebar :collapsed="collapsed" />
+      <Sidebar :collapsed="collapsed" @toggle-collapsed="toggleCollapsed" />
       <SidebarRight />
       <a-layout class="mailbox">
         <a-layout-content class="content">
@@ -27,6 +27,19 @@ export default {
   data() {
     return {
       collapsed: false,
+      screenWidth: 0
+    }
+  },
+  mounted() {
+    this.screenWidth = document.body.clientWidth
+    this.collapsed = this.screenWidth <= 768 ? true : false
+
+    const that = this
+    window.onresize = () => {
+      return (() => {
+        that.screenWidth = document.body.clientWidth
+        that.collapsed = that.screenWidth <= 768 ? true : false
+      })()
     }
   },
   methods: {
@@ -108,6 +121,19 @@ body
       margin-left $sidebar-width-collapsed
       .content .header
         width calc(100% - 73px - 55px)
+
+  @media (max-width: 768px)
+    .mailbox
+      margin-left $sidebar-width-collapsed
+      margin-right 0
+      &::-webkit-scrollbar
+        width 5px
+      &::-webkit-scrollbar-thumb
+        border-radius 3px
+      .content .header
+        width calc(100% - 73px)
+    .side-collapsed .mailbox .content .header
+      width calc(100% - 73px)
 
 .ant-tooltip
   .ant-tooltip-arrow

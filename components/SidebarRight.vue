@@ -49,4 +49,8 @@
     margin 8px auto 24px
     width 20px
     border-top $border
+
+@media (max-width: 768px)
+  .sidebar-right
+    display none
 </style>

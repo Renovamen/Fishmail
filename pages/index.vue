@@ -55,18 +55,6 @@
         </a-table>
       </a-tab-pane>
     </a-tabs>
-
-    <!-- <a-table
-      :columns="columns"
-      :data-source="data"
-      :showHeader="false"
-      :row-selection="selectItem"
-      :pagination="false"
-      :customRow="goToArticle"
-      :rowClassName="setClassName"
-    >
-      <div class="time" slot="time" slot-scope="text">{{ text }}</div>
-    </a-table> -->
   </div>
 </template>
 
@@ -283,4 +271,12 @@ export default {
       padding-right 5px
     .ant-checkbox-wrapper
       margin-left -7px
+  
+  @media (max-width: 1024px)
+    .header
+      padding-right 8px
+      .select-all
+        display none
+      .operation
+        margin-left 8px
 </style>

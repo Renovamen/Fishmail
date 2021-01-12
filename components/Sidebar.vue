@@ -13,6 +13,7 @@
       </div>
     </div>
     <a-menu
+      class="menu"
       mode="inline"
       :default-selected-keys="['menu-inbox']"
       :default-open-keys="['menu-catagory']"
@@ -104,10 +105,12 @@ export default {
       padding 0 24px 0 0
       border-radius 24px
       cursor pointer
+      transition box-shadow 0.15s, background-color 0.15s
       &:hover
         box-shadow 0 1px 2px 0 rgba(60, 64 67, 0.3),
                     0 1px 3px 1px rgba(60, 64, 67, 0.1),
-                    0 3px 8px 5px rgba(60, 64 67, 0.12)
+                    0 3px 8px 4px rgba(60, 64 67, 0.13)
+        background-color #fafafb
       &::before
         content ''
         display block
@@ -117,9 +120,9 @@ export default {
         background-repeat no-repeat
         background-size 32px
         background-image url(https://www.gstatic.com/images/icons/material/colored_icons/2x/create_32dp.png)
-  .ant-menu
+  .menu
     padding-right 18px
-    margin-top 15px
+    width $sidebar-width
     .anticon
       font-size 16px
       color #767676
@@ -167,4 +170,6 @@ export default {
         &::before
           width 56px
           height 56px
+    .menu
+      width $sidebar-width-collapsed
 </style>

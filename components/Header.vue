@@ -14,29 +14,28 @@
       </div>
     </div>
     <div class="toolbar">
-      <a-input
-        class="search-box"
-        placeholder="搜索邮件"
-      >
-        <a-tooltip
-          slot="prefix"
-          title="搜索"
-          placement="bottom"
-        >
-          <a-button>
-            <a-icon type="search" />
-          </a-button>
-        </a-tooltip>
-        <a-tooltip
-          slot="suffix"
-          title="显示搜索选项"
-          placement="bottom"
-        >
-          <a-button>
-            <a-icon type="caret-down" />
-          </a-button>
-        </a-tooltip>
-      </a-input>
+      <div class="search-box">
+        <a-input placeholder="搜索邮件">
+          <a-tooltip
+            slot="prefix"
+            title="搜索"
+            placement="bottom"
+          >
+            <a-button>
+              <a-icon type="search" />
+            </a-button>
+          </a-tooltip>
+          <a-tooltip
+            slot="suffix"
+            title="显示搜索选项"
+            placement="bottom"
+          >
+            <a-button>
+              <a-icon type="caret-down" />
+            </a-button>
+          </a-tooltip>
+        </a-input>
+      </div>
       <div class="info">
         <a-tooltip title="支持" placement="bottom">
           <a-button>
@@ -98,26 +97,29 @@
     display flex
     flex 1
     .search-box
-      padding 8px 0
-      width 724px
-      button
-        width 38px
-        height 38px
-        .anticon
-          color $icon-color
-        &:hover,
-        &:active,
-        &:focus
-          background #E2E5E6
-      .ant-input-prefix
-        left 10px
-        .anticon
-          font-size 19px
-          margin-top 3px
-      .ant-input-suffix
-        right 10px
-        .anticon
-          margin-top 5px
+      display flex
+      flex 1
+      .ant-input-affix-wrapper
+        max-width 724px
+        padding 8px 0
+        button
+          width 38px
+          height 38px
+          .anticon
+            color $icon-color
+          &:hover,
+          &:active,
+          &:focus
+            background #E2E5E6
+        .ant-input-prefix
+          left 10px
+          .anticon
+            font-size 19px
+            margin-top 3px
+        .ant-input-suffix
+          right 10px
+          .anticon
+            margin-top 5px
       input
         height 100%
         border-radius 8px
@@ -130,11 +132,11 @@
           box-shadow 0 1px 1px 0 rgba(65, 69, 73, 0.3), 0 1px 3px 0 rgba(65, 69, 73, 0.15)
           -webkit-box-shadow 0 1px 1px 0 rgba(65, 69, 73, 0.3), 0 1px 3px 0 rgba(65, 69, 73, 0.15)
     .info
-      display flex
-      flex 1
+      width 210px
       justify-content flex-end
       align-items center
-      padding 0 15px
+      padding-right 13px
+      display flex
       button
         width 40px
         height 40px
@@ -148,4 +150,12 @@
           width 33px
           height 33px
           border-radius 50%
+  @media (max-width: 768px)
+    .sitename .logo,
+    .toolbar .info
+      display none
+    .sitename
+      width 73px
+    .toolbar
+      padding-right 5px
 </style>
