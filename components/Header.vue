@@ -18,12 +18,23 @@
         class="search-box"
         placeholder="搜索邮件"
       >
-        <a-icon slot="prefix" type="search" />
+        <a-tooltip
+          slot="prefix"
+          title="搜索"
+          placement="bottom"
+        >
+          <a-button>
+            <a-icon type="search" />
+          </a-button>
+        </a-tooltip>
         <a-tooltip
           slot="suffix"
           title="显示搜索选项"
+          placement="bottom"
         >
-          <a-icon type="caret-down" />
+          <a-button>
+            <a-icon type="caret-down" />
+          </a-button>
         </a-tooltip>
       </a-input>
       <div class="info">
@@ -51,14 +62,13 @@
 </template>
 
 <style lang="stylus">
-$sidebar-width = 255px
-$header-height = 64px
+@import '@/assets/vars.styl'
 
 .header
   position fixed
   width 100%
   background #fff
-  border-bottom 1px solid #eee
+  border-bottom $border
   padding 0
   display flex
   z-index 30
@@ -90,14 +100,24 @@ $header-height = 64px
     .search-box
       padding 8px 0
       width 724px
-      .anticon
-        color #5F6368
+      button
+        width 38px
+        height 38px
+        .anticon
+          color $icon-color
+        &:hover,
+        &:active,
+        &:focus
+          background #E2E5E6
       .ant-input-prefix
-        left 20px
+        left 10px
         .anticon
           font-size 19px
+          margin-top 3px
       .ant-input-suffix
-        right 22px
+        right 10px
+        .anticon
+          margin-top 5px
       input
         height 100%
         border-radius 8px

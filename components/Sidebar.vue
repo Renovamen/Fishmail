@@ -50,6 +50,15 @@
           <a-icon type="info-circle" />
           <span class="text">动态</span>
         </a-menu-item>
+        <a-menu-item key="3">
+          <a
+            target="_blank"
+            href="https://github.com/Renovamen/Fishmail"
+          >
+            <a-icon type="github" />
+            <span class="text">源码</span>
+          </a>
+        </a-menu-item>
       </a-sub-menu>
     </a-menu>
   </a-layout-sider>
@@ -62,11 +71,7 @@ export default {
 </script>
 
 <style lang="stylus">
-$text-color = #202124
-$text-color-selected = #d93025
-$item-bg-seleted = #fce8e6
-$item-bg-hover = #F1F3F4
-$header-height = 64px
+@import '@/assets/vars.styl'
 
 .sidebar
   position fixed
@@ -81,8 +86,10 @@ $header-height = 64px
     margin-top 20px
     .anticon
       font-size 16px
+      color #767676
     .ant-menu-item,
     .ant-menu-submenu-title
+      color $text-color
       height 33px
       line-height 33px
       margin 0
@@ -91,15 +98,21 @@ $header-height = 64px
         border-right none
       &:hover
         color $text-color
-        background-color $item-bg-hover
+        background-color $sidebar-bg-hover
+      a
+        color $text-color
       .text
         margin-left 5px
     .ant-menu-item-selected
-      background-color $item-bg-seleted
+      background-color $sidebar-bg-seleted
       color $text-color-selected
       font-weight bold
+      .anticon
+        color $text-color-selected
       &:hover
-        background-color $item-bg-seleted
+        background-color $sidebar-bg-seleted
+        color $text-color-selected
+      a
         color $text-color-selected
     .ant-menu-submenu-selected .ant-menu-submenu-title
       color $text-color

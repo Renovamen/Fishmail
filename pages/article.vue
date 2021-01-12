@@ -124,6 +124,8 @@ export default {
 </script>
 
 <style lang="stylus">
+@import '@/assets/vars.styl'
+
 .article-page
   .header
     padding 0 28px 0 8px
@@ -132,13 +134,13 @@ export default {
     .operation
       margin-left -10px
       .separator
-        border-left 1px solid #eee
+        border-left $border
         margin-left 7px
         margin-right 12px
   .article
     padding 17px 30px 20px 73px
     position relative
-    color #202124
+    color $text-color
     h1, h2
       font-weight 400
     h1
@@ -147,7 +149,7 @@ export default {
       font-size 18px
     .question
       &:not(:last-child)
-        border-bottom 1px solid #eee
+        border-bottom $border
         margin-bottom 25px
       .meta
         margin-top 20px
@@ -158,7 +160,6 @@ export default {
           height 40px
           border-radius 50%
           margin-left -55px
-          border 1px solid #eee
         span.author, span.bio
           letter-spacing .2px
         span.author
@@ -183,18 +184,18 @@ export default {
         hr
           border 0
           height 1px
-          background-color #E7E7E7
+          background-color #eee
           margin 20px 0
     .view-more
       text-align center
       margin-top 50px
       margin-bottom 35px
       a
-        border 1px solid #2995FC
+        border 1px solid $accent-color
         border-radius 5px
         padding 8px 12px
         font-size 12px
         &:hover
           background #F6FBFF
-          color #2995FC
+          color $accent-color
 </style>

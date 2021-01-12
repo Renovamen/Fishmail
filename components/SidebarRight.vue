@@ -25,14 +25,15 @@
 </template>
 
 <style lang="stylus">
-$header-height = 64px
+@import '@/assets/vars.styl'
+
 .sidebar-right
   position fixed
   background #fff
   height 100%
   right 0
   margin-top $header-height
-  border-left 1px solid #eee
+  border-left $border
   text-align center
   padding-top 8px
   z-index 20
@@ -47,5 +48,5 @@ $header-height = 64px
   .separator
     margin 8px auto 24px
     width 20px
-    border-top 1px solid #eee
+    border-top $border
 </style>

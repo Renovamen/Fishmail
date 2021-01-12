@@ -38,11 +38,7 @@ export default {
 </script>
 
 <style lang="stylus">
-$sidebar-width = 255px
-$sidebar-width-collapsed = 80px
-$sidebar-width-right = 55px
-$header-height = 64px
-$page-header-height = 48px
+@import '@/assets/vars.styl'
 
 body
   font-family Helvetica, Arial, sans-serif
@@ -55,12 +51,13 @@ body
     transition all 0s
     border none
     box-shadow none
-    color #5F6368
+    color $icon-color
+    background transparent
     &:hover,
     &:active,
     &:focus
       background #EFF0F0
-      color #5F6368
+      color $icon-color
   .mailbox
     margin-left $sidebar-width
     margin-right $sidebar-width-right

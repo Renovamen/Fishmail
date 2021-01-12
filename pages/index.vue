@@ -1,5 +1,5 @@
 <template>
-  <div class="mail-list">
+  <div class="article-list">
     <header class="header">
       <div class="select-all">
         <a-tooltip title="选择" placement="bottom">
@@ -23,12 +23,12 @@
         <div class="num">第 {{ page }} 页，共 {{ data.length }} 行</div>
         <div class="pager">
           <a-tooltip title="较新" placement="bottom">
-            <a-button @click="goPage(-1)">
+            <a-button @click="changePage(-1)">
               <a-icon type="left" />
             </a-button>
           </a-tooltip>
           <a-tooltip title="较旧" placement="bottom">
-            <a-button @click="goPage(1)">
+            <a-button @click="changePage(1)">
               <a-icon type="right" />
             </a-button>
           </a-tooltip>
@@ -41,14 +41,9 @@
       :showHeader="false"
       :row-selection="selectItem"
       :pagination="false"
+      :customRow="goToArticle"
+      :rowClassName="setClassName"
     >
-      <div
-        slot="articleTitle"
-        slot-scope="text, record"
-        @click="goToArticle(record.key)"
-      >
-        {{ text }}
-      </div>
       <div class="time" slot="time" slot-scope="text">{{ text }}</div>
     </a-table>
   </div>
@@ -67,7 +62,6 @@ const columns = [
   {
     title: 'articleTitle',
     dataIndex: 'articleTitle',
-    scopedSlots: { customRender: 'articleTitle' },
     ellipsis: true
   },
   {
@@ -165,17 +159,26 @@ export default {
       if(!timeMatch) return null
       return timeMatch[1]
     },
-    goToArticle(id) {
-      this.$router.push({
-				path: "article",
-				query: {
-					id: id
-				}
-			})
+    goToArticle(record, index) {
+      return {
+        on: {
+          click: () => {
+            this.$router.push({
+              path: "article",
+              query: {
+                id: record.key
+              }
+            })
+          }
+        }
+      }
     },
-    goPage(value) {
+    changePage(value) {
       this.page += value
       this.getList()
+    },
+    setClassName(record, index) {
+      return record.time === this.formatDate(this.latestDate) ? 'latest' : ''
     }
   },
   computed: {
@@ -196,7 +199,9 @@ export default {
 </script>
 
 <style lang="stylus">
-.mail-list
+@import '@/assets/vars.styl'
+
+.article-list
   .header
     padding-right 28px
     .select-all
@@ -204,13 +209,17 @@ export default {
       padding-left 22px
     .operation
       margin-left -5px
-  table
+  .ant-table-tbody
     font-size 14px
+    color $text-color
     tr
-      background-color #F4F7F7
+      background-color $table-color
       cursor pointer
+    tr.latest
+      background-color #fff
+      font-weight bold
     td, th
-      padding 8px !important
+      padding 10px !important
     .time
       font-size 12px
       text-align right
