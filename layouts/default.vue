@@ -107,7 +107,7 @@ body
     .mailbox
       margin-left $sidebar-width-collapsed
       .content .header
-        width calc(100% - 80px - 55px)
+        width calc(100% - 73px - 55px)
 
 .ant-tooltip
   .ant-tooltip-arrow

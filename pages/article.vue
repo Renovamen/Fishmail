@@ -98,14 +98,14 @@ export default {
 		}
   },
   computed: mapState({
-		articles: state => state.articles
-	}),
+    articles: state => state.articles
+  }),
   activated() {
     this.getContent()
   },
   deactivated() {
-		this.data = ''
-	},
+    this.data = ''
+  },
   methods: {
     async getContent() {
       const id = this.$route.query.id
@@ -149,8 +149,14 @@ export default {
       font-size 18px
     .question
       &:not(:last-child)
-        border-bottom $border
-        margin-bottom 25px
+        margin-bottom 60px
+        &::after
+          content ''
+          position absolute
+          height 1px
+          width 100%
+          margin-left -73px
+          border-bottom $border
       .meta
         margin-top 20px
         img.avatar, span.author, span.bio

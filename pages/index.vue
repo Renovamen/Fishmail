@@ -35,7 +35,28 @@
         </div>
       </div>
     </header>
-    <a-table
+
+    <a-tabs default-active-key="1">
+      <a-tab-pane key="1">
+        <span slot="tab">
+          <div class="icon-image" />
+          <div class="text">主要</div>
+        </span>
+        <a-table
+          :columns="columns"
+          :data-source="data"
+          :showHeader="false"
+          :row-selection="selectItem"
+          :pagination="false"
+          :customRow="goToArticle"
+          :rowClassName="setClassName"
+        >
+          <div class="time" slot="time" slot-scope="text">{{ text }}</div>
+        </a-table>
+      </a-tab-pane>
+    </a-tabs>
+
+    <!-- <a-table
       :columns="columns"
       :data-source="data"
       :showHeader="false"
@@ -45,7 +66,7 @@
       :rowClassName="setClassName"
     >
       <div class="time" slot="time" slot-scope="text">{{ text }}</div>
-    </a-table>
+    </a-table> -->
   </div>
 </template>
 
@@ -82,8 +103,8 @@ export default {
     }
   },
   computed: mapState({
-		lists: state => state.lists
-	}),
+    lists: state => state.lists
+  }),
   async mounted() {
     await this.refresh()
   },
@@ -206,9 +227,45 @@ export default {
     padding-right 28px
     .select-all
       width 60px
-      padding-left 22px
+      padding-left 19px
     .operation
-      margin-left -5px
+      margin-left 5px
+  .ant-tabs-bar
+    margin-bottom 0
+    .ant-tabs-nav-wrap
+      .ant-tabs-tab
+        width $tab-width
+        height 57px
+        display flex
+        align-items center
+        &:hover
+          background-color #F2F2F2
+        span
+          display flex
+          align-items center
+          .icon-image
+            background-image url(https://www.gstatic.com/images/icons/material/system/2x/inbox_gm_googlered600_20dp.png)
+            background-position center
+            background-repeat no-repeat
+            background-size 20px
+            height 20px
+            width 20px
+            margin-top -2px
+            margin-right 16px
+            margin-left 1px
+            display inline-block
+          .text
+            display inline-block
+      .ant-tabs-ink-bar
+        background-color $text-color-selected
+        width $tab-width - 16px !important
+        left 50%
+        margin-left (- ($tab-width - 16px) / 2)
+        border-top-left-radius 3px
+        border-top-right-radius 3px
+        height 3px
+      .ant-tabs-tab-active
+        color $text-color-selected
   .ant-table-tbody
     font-size 14px
     color $text-color
@@ -224,4 +281,6 @@ export default {
       font-size 12px
       text-align right
       padding-right 5px
+    .ant-checkbox-wrapper
+      margin-left -7px
 </style>
