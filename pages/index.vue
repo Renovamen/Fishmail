@@ -55,6 +55,29 @@
         </a-table>
       </a-tab-pane>
     </a-tabs>
+
+    <footer>
+      <a-row>
+        <a-col :span="8" class="left">
+          使用了 15 GB 存储空间中的 0.56 GB (3%)
+        </a-col>
+        <a-col :span="8" class="center">
+          条款 · 隐私权 · 使用规定
+        </a-col>
+        <a-col :span="8" class="right">
+          上次帐号活动时间：3分钟前
+        </a-col>
+      </a-row>
+      <a-row>
+        <a-col :span="8" class="left">
+          管理
+        </a-col>
+        <a-col :span="8" class="center" />
+        <a-col :span="8" class="right">
+          详细信息
+        </a-col>
+      </a-row>
+    </footer>
   </div>
 </template>
 
@@ -260,17 +283,34 @@ export default {
     tr
       background-color $table-color
       cursor pointer
+      .time
+        font-size 12px
+        text-align right
+        padding-right 5px
+        color $icon-color
     tr.latest
       background-color #fff
       font-weight bold
+      .time
+        color $text-color
     td, th
       padding 10px !important
-    .time
-      font-size 12px
-      text-align right
-      padding-right 5px
     .ant-checkbox-wrapper
       margin-left -7px
+  footer
+    height 72px
+    padding 16px 17px
+    font-size 10px
+    .ant-row
+      padding 1px 0
+      .center
+        text-align center
+      .right
+        text-align right
+  
+  @media (max-width: 768px)
+    footer
+      display none
   
   @media (max-width: 1024px)
     .header
