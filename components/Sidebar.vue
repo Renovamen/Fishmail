@@ -19,7 +19,10 @@
       :default-open-keys="['menu-catagory']"
       :style="{ height: '100%', borderRight: 0 }"
     >
-      <a-menu-item key="menu-inbox">
+      <a-menu-item
+        key="menu-inbox"
+        class="inbox"
+      >
         <a-icon type="inbox" />
         <span class="text">收件箱</span>
       </a-menu-item>
@@ -161,15 +164,15 @@ export default {
     .ant-menu-submenu .ant-menu-item
       padding-left 40px !important
     .ant-menu-item-selected
-      background-color $sidebar-bg-seleted
-      color $text-color-selected
+      background-color $sidebar-bg-hover
       font-weight bold
+    .inbox.ant-menu-item-selected
+      background-color $sidebar-bg-selected
+      color $text-color-selected
       .anticon
         color $text-color-selected
       &:hover
-        background-color $sidebar-bg-seleted
-        color $text-color-selected
-      a
+        background-color $sidebar-bg-selected
         color $text-color-selected
     .ant-menu-submenu-selected .ant-menu-submenu-title
       color $text-color
