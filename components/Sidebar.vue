@@ -1,9 +1,9 @@
 <template>
   <a-layout-sider
+    v-model="isCollapsed"
     class="sidebar"
     width="255"
-    collapsedWidth="73"
-    v-model="collapsed"
+    collapsed-width="73"
     :trigger="null"
     collapsible
   >
@@ -72,8 +72,23 @@
 
 <script>
 export default {
-  props: ['collapsed']
-}
+  props: {
+    collapsed: {
+      type: Boolean,
+      required: true
+    }
+  },
+  data() {
+    return {
+      isCollapsed: this.collapsed
+    };
+  },
+  watch: {
+    collapsed(val) {
+      this.isCollapsed = val;
+    }
+  }
+};
 </script>
 
 <style lang="stylus">

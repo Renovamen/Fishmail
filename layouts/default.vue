@@ -2,7 +2,10 @@
   <a-layout class="mail-layout">
     <Header @toggle-collapsed="toggleCollapsed" />
     <a-layout :class="{ 'side-collapsed': collapsed }">
-      <Sidebar :collapsed="collapsed" @toggle-collapsed="toggleCollapsed" />
+      <Sidebar
+        :collapsed="collapsed"
+        @toggle-collapsed="toggleCollapsed"
+      />
       <SidebarRight />
       <a-layout class="mailbox">
         <a-layout-content class="content">
@@ -14,40 +17,40 @@
 </template>
 
 <script>
-import Header from '../components/Header.vue'
-import Sidebar from '../components/Sidebar.vue'
-import SidebarRight from '../components/SidebarRight.vue'
+import Header from "../components/Header.vue";
+import Sidebar from "../components/Sidebar.vue";
+import SidebarRight from "../components/SidebarRight.vue";
 
 export default {
-  components: { 
+  components: {
     Header,
     Sidebar,
-    SidebarRight
+    SidebarRight,
   },
   data() {
     return {
       collapsed: false,
-      screenWidth: 0
-    }
+      screenWidth: 0,
+    };
   },
   mounted() {
-    this.screenWidth = document.body.clientWidth
-    this.collapsed = this.screenWidth <= 768 ? true : false
+    this.screenWidth = document.body.clientWidth;
+    this.collapsed = this.screenWidth <= 768 ? true : false;
 
-    const that = this
+    const that = this;
     window.onresize = () => {
       return (() => {
-        that.screenWidth = document.body.clientWidth
-        that.collapsed = that.screenWidth <= 768 ? true : false
-      })()
-    }
+        that.screenWidth = document.body.clientWidth;
+        that.collapsed = that.screenWidth <= 768 ? true : false;
+      })();
+    };
   },
   methods: {
     toggleCollapsed() {
-      this.collapsed = !this.collapsed
-    }
-  }
-}
+      this.collapsed = !this.collapsed;
+    },
+  },
+};
 </script>
 
 <style lang="stylus">
