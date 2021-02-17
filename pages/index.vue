@@ -271,7 +271,7 @@ export default {
       };
     },
     changePage(value) {
-      this.page += value;
+      this.page = Math.max(1, this.page + value);
       this.getList();
     },
     setClassName(record, index) {
