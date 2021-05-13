@@ -185,7 +185,7 @@ export default {
         p
           line-height 1.7
           margin-bottom 10px
-        img.content-image
+        figure img
           width inherit
           max-width 100%
           margin 30px auto
@@ -199,7 +199,7 @@ export default {
           height 1px
           background-color #eee
           margin 20px 0
-    &.disable-image .question .content img.content-image
+    &.disable-image .question .content figure img
       display none
 
     .view-more
