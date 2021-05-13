@@ -2,10 +2,7 @@
   <a-layout class="mail-layout">
     <Header @toggle-collapsed="toggleCollapsed" />
     <a-layout :class="{ 'side-collapsed': collapsed }">
-      <Sidebar
-        :collapsed="collapsed"
-        @toggle-collapsed="toggleCollapsed"
-      />
+      <Sidebar :collapsed="collapsed" @toggle-collapsed="toggleCollapsed" />
       <SidebarRight />
       <a-layout class="mailbox">
         <a-layout-content class="content">
@@ -25,12 +22,12 @@ export default {
   components: {
     Header,
     Sidebar,
-    SidebarRight,
+    SidebarRight
   },
   data() {
     return {
       collapsed: false,
-      screenWidth: 0,
+      screenWidth: 0
     };
   },
   mounted() {
@@ -48,8 +45,8 @@ export default {
   methods: {
     toggleCollapsed() {
       this.collapsed = !this.collapsed;
-    },
-  },
+    }
+  }
 };
 </script>
 

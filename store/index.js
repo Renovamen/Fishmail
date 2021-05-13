@@ -9,7 +9,7 @@ export const mutations = {
     state.lists[payload.page] = payload.data;
   },
   clearList(state) {
-    state.lists = {}
+    state.lists = {};
   },
   updateArticle(state, payload) {
     state.articles[payload.id] = payload.data;

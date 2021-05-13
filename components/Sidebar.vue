@@ -19,10 +19,7 @@
       :default-open-keys="['menu-catagory']"
       :style="{ height: '100%', borderRight: 0 }"
     >
-      <a-menu-item
-        key="menu-inbox"
-        class="inbox"
-      >
+      <a-menu-item key="menu-inbox" class="inbox">
         <a-icon type="inbox" />
         <span class="text">收件箱</span>
       </a-menu-item>
@@ -60,10 +57,7 @@
           <span class="text">动态</span>
         </a-menu-item>
         <a-menu-item key="3">
-          <a
-            target="_blank"
-            href="https://github.com/Renovamen/Fishmail"
-          >
+          <a target="_blank" href="https://github.com/Renovamen/Fishmail">
             <a-icon type="github" />
             <span class="text">源码</span>
           </a>

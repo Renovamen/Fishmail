@@ -2,26 +2,17 @@
   <div class="article-list">
     <header class="header">
       <div class="select-all">
-        <a-tooltip
-          title="选择"
-          placement="bottom"
-        >
+        <a-tooltip title="选择" placement="bottom">
           <a-checkbox />
         </a-tooltip>
       </div>
       <div class="operation">
-        <a-tooltip
-          title="刷新"
-          placement="bottom"
-        >
+        <a-tooltip title="刷新" placement="bottom">
           <a-button @click="refresh()">
             <a-icon type="reload" />
           </a-button>
         </a-tooltip>
-        <a-tooltip
-          title="更多操作"
-          placement="bottom"
-        >
+        <a-tooltip title="更多操作" placement="bottom">
           <a-button>
             <a-icon type="more" />
           </a-button>
@@ -29,22 +20,14 @@
       </div>
 
       <div class="pagination">
-        <div class="num">
-          第 {{ page }} 页，共 {{ data.length }} 行
-        </div>
+        <div class="num">第 {{ page }} 页，共 {{ data.length }} 行</div>
         <div class="pager">
-          <a-tooltip
-            title="较新"
-            placement="bottom"
-          >
+          <a-tooltip title="较新" placement="bottom">
             <a-button @click="changePage(-1)">
               <a-icon type="left" />
             </a-button>
           </a-tooltip>
-          <a-tooltip
-            title="较旧"
-            placement="bottom"
-          >
+          <a-tooltip title="较旧" placement="bottom">
             <a-button @click="changePage(1)">
               <a-icon type="right" />
             </a-button>
@@ -68,11 +51,7 @@
           :custom-row="goToArticle"
           :row-class-name="setClassName"
         >
-          <div
-            slot="time"
-            slot-scope="text"
-            class="time"
-          >
+          <div slot="time" slot-scope="text" class="time">
             {{ text }}
           </div>
         </a-table>
@@ -81,42 +60,16 @@
 
     <footer>
       <a-row>
-        <a-col
-          :span="8"
-          class="left"
-        >
+        <a-col :span="8" class="left">
           使用了 15 GB 存储空间中的 0.56 GB (3%)
         </a-col>
-        <a-col
-          :span="8"
-          class="center"
-        >
-          条款 · 隐私权 · 使用规定
-        </a-col>
-        <a-col
-          :span="8"
-          class="right"
-        >
-          上次帐号活动时间：3分钟前
-        </a-col>
+        <a-col :span="8" class="center"> 条款 · 隐私权 · 使用规定 </a-col>
+        <a-col :span="8" class="right"> 上次帐号活动时间：3分钟前 </a-col>
       </a-row>
       <a-row>
-        <a-col
-          :span="8"
-          class="left"
-        >
-          管理
-        </a-col>
-        <a-col
-          :span="8"
-          class="center"
-        />
-        <a-col
-          :span="8"
-          class="right"
-        >
-          详细信息
-        </a-col>
+        <a-col :span="8" class="left"> 管理 </a-col>
+        <a-col :span="8" class="center" />
+        <a-col :span="8" class="right"> 详细信息 </a-col>
       </a-row>
     </footer>
   </div>
@@ -130,19 +83,19 @@ const columns = [
   {
     title: "hint",
     dataIndex: "hint",
-    width: 240,
+    width: 240
   },
   {
     title: "articleTitle",
     dataIndex: "articleTitle",
-    ellipsis: true,
+    ellipsis: true
   },
   {
     title: "time",
     dataIndex: "time",
     scopedSlots: { customRender: "time" },
-    width: 100,
-  },
+    width: 100
+  }
 ];
 
 export default {
@@ -151,12 +104,12 @@ export default {
       data: [],
       columns,
       page: 1,
-      latestDate: "",
+      latestDate: ""
     };
   },
   computed: {
     ...mapState({
-      lists: 'lists'
+      lists: "lists"
     }),
     selectItem() {
       return {
@@ -169,9 +122,9 @@ export default {
         },
         getCheckboxProps: (record) => ({
           props: {
-            name: record.name,
-          },
-        }),
+            name: record.name
+          }
+        })
       };
     }
   },
@@ -182,16 +135,15 @@ export default {
     async getList() {
       if (Object.prototype.hasOwnProperty.call(this.lists, this.page)) {
         this.data = this.lists[this.page];
-      }
-      else {
+      } else {
         this.data = [];
         await this.getListByDate((this.page - 1) * 3);
         await this.getListByDate((this.page - 1) * 3 + 1);
         await this.getListByDate((this.page - 1) * 3 + 2);
-        this.$store.commit('updateList', {
+        this.$store.commit("updateList", {
           page: this.page,
           data: this.data
-        })
+        });
       }
     },
     async getListByDate(num) {
@@ -202,7 +154,7 @@ export default {
             time: this.formatDate(res.data.date),
             articleTitle: list[i].title,
             hint: list[i].hint,
-            key: list[i].id,
+            key: list[i].id
           };
           const readTime = this.getReadTime(list[i].hint);
           if (readTime) {
@@ -220,7 +172,7 @@ export default {
     },
     async refresh() {
       this.page = 1;
-      this.$store.commit('clearList');
+      this.$store.commit("clearList");
       await this.getLatestDate();
       await this.getList();
     },
@@ -239,10 +191,7 @@ export default {
 
       const year = d.getFullYear(),
         month = (d.getMonth() + 1).toString().padStart(2, "0"),
-        day = d
-          .getDate()
-          .toString()
-          .padStart(2, "0");
+        day = d.getDate().toString().padStart(2, "0");
 
       return year + month + day;
     },
@@ -263,11 +212,11 @@ export default {
             this.$router.push({
               path: "article",
               query: {
-                id: record.key,
-              },
+                id: record.key
+              }
             });
-          },
-        },
+          }
+        }
       };
     },
     changePage(value) {
@@ -276,7 +225,7 @@ export default {
     },
     setClassName(record, index) {
       return record.time === this.formatDate(this.latestDate) ? "latest" : "";
-    },
+    }
   }
 };
 </script>

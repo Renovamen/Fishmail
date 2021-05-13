@@ -9,7 +9,7 @@ const API = {
   topics: "/4/themes",
   topicbyid: "/4/theme/",
   sections: "/3/sections",
-  sectionbyid: "/3/section",
+  sectionbyid: "/3/section"
 };
 
 export const NewsAPI = API_ROOT.concat(API.news);

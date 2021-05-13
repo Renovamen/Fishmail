@@ -7,11 +7,7 @@ env:
 extends:
   - eslint:recommended
   - plugin:vue/recommended
-
-parserOptions:
-  parser: babel-eslint
-  sourceType: module
-  allowImportExportEverywhere: true
+  - plugin:prettier/recommended
 
 ignorePatterns:
   - node_modules/
@@ -24,3 +20,6 @@ rules:
     - vars: all
       args: none
   vue/no-v-html: 0
+  prettier/prettier:
+    - error
+    - trailingComma: none

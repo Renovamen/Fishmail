@@ -2,10 +2,7 @@
   <div class="article-page">
     <header class="header">
       <div class="back">
-        <a-tooltip
-          title="返回到“收件箱”"
-          placement="bottom"
-        >
+        <a-tooltip title="返回到“收件箱”" placement="bottom">
           <a-button>
             <NuxtLink to="/">
               <a-icon type="arrow-left" />
@@ -14,26 +11,17 @@
         </a-tooltip>
       </div>
       <div class="operation">
-        <a-tooltip
-          title="归档"
-          placement="bottom"
-        >
+        <a-tooltip title="归档" placement="bottom">
           <a-button>
             <a-icon type="book" />
           </a-button>
         </a-tooltip>
-        <a-tooltip
-          title="列为垃圾邮件"
-          placement="bottom"
-        >
+        <a-tooltip title="列为垃圾邮件" placement="bottom">
           <a-button>
             <a-icon type="exclamation-circle" />
           </a-button>
         </a-tooltip>
-        <a-tooltip
-          title="删除"
-          placement="bottom"
-        >
+        <a-tooltip title="删除" placement="bottom">
           <a-button>
             <a-icon type="delete" />
           </a-button>
@@ -41,26 +29,17 @@
 
         <span class="separator" />
 
-        <a-tooltip
-          title="标记未读"
-          placement="bottom"
-        >
+        <a-tooltip title="标记未读" placement="bottom">
           <a-button>
             <a-icon type="mail" />
           </a-button>
         </a-tooltip>
-        <a-tooltip
-          title="延后"
-          placement="bottom"
-        >
+        <a-tooltip title="延后" placement="bottom">
           <a-button>
             <a-icon type="clock-circle" />
           </a-button>
         </a-tooltip>
-        <a-tooltip
-          title="添加到 Tasks"
-          placement="bottom"
-        >
+        <a-tooltip title="添加到 Tasks" placement="bottom">
           <a-button>
             <a-icon type="check-circle" />
           </a-button>
@@ -68,26 +47,17 @@
 
         <span class="separator" />
 
-        <a-tooltip
-          title="移至"
-          placement="bottom"
-        >
+        <a-tooltip title="移至" placement="bottom">
           <a-button>
             <a-icon type="export" />
           </a-button>
         </a-tooltip>
-        <a-tooltip
-          title="标签"
-          placement="bottom"
-        >
+        <a-tooltip title="标签" placement="bottom">
           <a-button>
             <a-icon type="tag" />
           </a-button>
         </a-tooltip>
-        <a-tooltip
-          title="更多操作"
-          placement="bottom"
-        >
+        <a-tooltip title="更多操作" placement="bottom">
           <a-button>
             <a-icon type="more" />
           </a-button>
@@ -95,22 +65,14 @@
       </div>
 
       <div class="pagination">
-        <div class="num">
-          第 6 个会话，共 26 个
-        </div>
+        <div class="num">第 6 个会话，共 26 个</div>
         <div class="pager">
-          <a-tooltip
-            title="较新"
-            placement="bottom"
-          >
+          <a-tooltip title="较新" placement="bottom">
             <a-button>
               <a-icon type="left" />
             </a-button>
           </a-tooltip>
-          <a-tooltip
-            title="更早"
-            placement="bottom"
-          >
+          <a-tooltip title="更早" placement="bottom">
             <a-button>
               <a-icon type="right" />
             </a-button>
@@ -119,10 +81,7 @@
       </div>
     </header>
 
-    <div
-      class="article"
-      :class="{ 'disable-image': disableImage }"
-    >
+    <div class="article" :class="{ 'disable-image': disableImage }">
       <h1 class="title">
         {{ data.title }}
       </h1>
@@ -138,7 +97,7 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      data: "",
+      data: ""
     };
   },
   computed: mapState({
@@ -156,14 +115,13 @@ export default {
       const id = this.$route.query.id;
       if (Object.prototype.hasOwnProperty.call(this.articles, id)) {
         this.data = this.articles[id];
-      }
-      else {
+      } else {
         api.getNewsById(id).then((res) => {
           this.data = res.data;
           this.$store.commit("updateArticle", {
             id: id,
             data: res.data
-          })
+          });
         });
       }
     }

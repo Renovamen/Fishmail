@@ -1,38 +1,24 @@
 <template>
   <a-layout-header class="header">
     <div class="sitename">
-      <a-tooltip
-        title="主菜单"
-        placement="bottom"
-      >
-        <a-button
-          class="sidebar-togger"
-          @click="$emit('toggle-collapsed')"
-        >
+      <a-tooltip title="主菜单" placement="bottom">
+        <a-button class="sidebar-togger" @click="$emit('toggle-collapsed')">
           <a-icon type="menu" />
         </a-button>
       </a-tooltip>
       <div class="logo">
-        <img src="/logo.png">
+        <img src="/logo.png" />
       </div>
     </div>
     <div class="toolbar">
       <div class="search-box">
         <a-input placeholder="搜索邮件">
-          <a-tooltip
-            slot="prefix"
-            title="搜索"
-            placement="bottom"
-          >
+          <a-tooltip slot="prefix" title="搜索" placement="bottom">
             <a-button>
               <a-icon type="search" />
             </a-button>
           </a-tooltip>
-          <a-tooltip
-            slot="suffix"
-            title="显示搜索选项"
-            placement="bottom"
-          >
+          <a-tooltip slot="suffix" title="显示搜索选项" placement="bottom">
             <a-button>
               <a-icon type="caret-down" />
             </a-button>
@@ -40,41 +26,28 @@
         </a-input>
       </div>
       <div class="info">
-        <a-tooltip
-          title="支持"
-          placement="bottom"
-        >
+        <a-tooltip title="支持" placement="bottom">
           <a-button>
             <a-icon type="question-circle" />
           </a-button>
         </a-tooltip>
-        <a-tooltip
-          title="设置"
-          placement="bottom"
-        >
+        <a-tooltip title="设置" placement="bottom">
           <a-button>
             <a-icon type="setting" />
           </a-button>
         </a-tooltip>
-        <a-tooltip
-          title="Google 应用"
-          placement="bottom"
-        >
+        <a-tooltip title="Google 应用" placement="bottom">
           <a-button @click="toggleDisableImage()">
             <v-icon
               v-if="disableImage"
               name="md-imagenotsupported-round"
               scale="1.1"
             />
-            <v-icon
-              v-else
-              name="md-image"
-              scale="1.1"
-            />
+            <v-icon v-else name="md-image" scale="1.1" />
           </a-button>
         </a-tooltip>
         <a-button class="avatar">
-          <img src="/avatar.svg">
+          <img src="/avatar.svg" />
         </a-button>
       </div>
     </div>
@@ -86,7 +59,7 @@ import { mapState } from "vuex";
 
 export default {
   computed: mapState({
-    disableImage: (state) => state.disableImage,
+    disableImage: (state) => state.disableImage
   }),
   methods: {
     toggleDisableImage() {

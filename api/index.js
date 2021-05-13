@@ -2,7 +2,7 @@ import axios from "axios";
 import {
   NewsAPI,
   NewsIdAPI,
-  NewsDateAPI,
+  NewsDateAPI
   // NewsInfoAPI,
   // TopicsAPI,
   // TopicsIdAPI,
@@ -19,5 +19,5 @@ export default {
   },
   async getNewsById(id) {
     return await axios.get(NewsIdAPI + id);
-  },
+  }
 };
