@@ -1,6 +1,7 @@
 export const state = () => ({
   articles: {},
   lists: {},
+  disableImage: false
 });
 
 export const mutations = {
@@ -12,5 +13,8 @@ export const mutations = {
   },
   updateArticle(state, payload) {
     state.articles[payload.id] = payload.data;
+  },
+  toggleDisableImage(state) {
+    state.disableImage = !state.disableImage;
   }
 };

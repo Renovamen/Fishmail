@@ -118,7 +118,11 @@
         </div>
       </div>
     </header>
-    <div class="article">
+
+    <div
+      class="article"
+      :class="{ 'disable-image': disableImage }"
+    >
       <h1 class="title">
         {{ data.title }}
       </h1>
@@ -139,6 +143,7 @@ export default {
   },
   computed: mapState({
     articles: (state) => state.articles,
+    disableImage: (state) => state.disableImage
   }),
   activated() {
     this.getContent();
@@ -155,19 +160,19 @@ export default {
       else {
         api.getNewsById(id).then((res) => {
           this.data = res.data;
-          this.$store.commit('updateArticle', {
+          this.$store.commit("updateArticle", {
             id: id,
             data: res.data
           })
         });
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style lang="stylus">
-@import '@/assets/vars.styl'
+@import "@/assets/vars.styl"
 
 .article-page
   .header
@@ -194,7 +199,7 @@ export default {
       &:not(:last-child)
         margin-bottom 60px
         &::after
-          content ''
+          content ""
           position absolute
           height 1px
           width 100%
@@ -221,7 +226,7 @@ export default {
         p
           line-height 1.7
           margin-bottom 10px
-        .content-image
+        img.content-image
           width inherit
           max-width 100%
           margin 30px auto
@@ -235,6 +240,9 @@ export default {
           height 1px
           background-color #eee
           margin 20px 0
+    &.disable-image .question .content img.content-image
+      display none
+
     .view-more
       text-align center
       margin-top 50px

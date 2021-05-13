@@ -5858,6 +5858,11 @@ object.values@^1.1.0:
     es-abstract "^1.18.0-next.1"
     has "^1.0.3"
 
+oh-vue-icons@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/oh-vue-icons/-/oh-vue-icons-0.4.3.tgz#c80cc19f65e56d719f1c67f08a228ca7bf2815ec"
+  integrity sha512-9pt2jcgIVgVaZv1OWNCBoZaGM/27hHFW1zUowm7+8g3VKl40DzEwV+0G2U5CTFvsu+4n9QEasNYSv53jWnWFNQ==
+
 omit.js@^1.0.0:
   version "1.0.2"
   resolved "https://registry.npm.taobao.org/omit.js/download/omit.js-1.0.2.tgz#91a14f0eba84066dfa015bf30e474c47f30bc858"

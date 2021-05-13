@@ -60,8 +60,17 @@
           title="Google 应用"
           placement="bottom"
         >
-          <a-button>
-            <a-icon type="appstore" />
+          <a-button @click="toggleDisableImage()">
+            <v-icon
+              v-if="disableImage"
+              name="md-imagenotsupported-round"
+              scale="1.1"
+            />
+            <v-icon
+              v-else
+              name="md-image"
+              scale="1.1"
+            />
           </a-button>
         </a-tooltip>
         <a-button class="avatar">
@@ -71,6 +80,21 @@
     </div>
   </a-layout-header>
 </template>
+
+<script>
+import { mapState } from "vuex";
+
+export default {
+  computed: mapState({
+    disableImage: (state) => state.disableImage,
+  }),
+  methods: {
+    toggleDisableImage() {
+      this.$store.commit("toggleDisableImage");
+    }
+  }
+};
+</script>
 
 <style lang="stylus">
 @import '@/assets/vars.styl'
@@ -153,9 +177,14 @@
         width 40px
         height 40px
         margin-left 5px
+        display flex
+        align-items center
+        justify-content center
         .anticon
           font-size 20px
           margin-top 5px
+        .ov-icon
+          margin-top 2px
       .avatar
         margin-left 8px
         img
