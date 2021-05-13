@@ -5,7 +5,7 @@
         <a-tooltip title="返回到“收件箱”" placement="bottom">
           <a-button>
             <NuxtLink to="/">
-              <a-icon type="arrow-left" />
+              <v-icon name="md-arrowback-round" />
             </NuxtLink>
           </a-button>
         </a-tooltip>
@@ -13,17 +13,17 @@
       <div class="operation">
         <a-tooltip title="归档" placement="bottom">
           <a-button>
-            <a-icon type="book" />
+            <v-icon name="md-archive" />
           </a-button>
         </a-tooltip>
         <a-tooltip title="列为垃圾邮件" placement="bottom">
           <a-button>
-            <a-icon type="exclamation-circle" />
+            <v-icon name="io-alert-circle-sharp" />
           </a-button>
         </a-tooltip>
         <a-tooltip title="删除" placement="bottom">
           <a-button>
-            <a-icon type="delete" />
+            <v-icon name="md-delete" />
           </a-button>
         </a-tooltip>
 
@@ -31,17 +31,17 @@
 
         <a-tooltip title="标记未读" placement="bottom">
           <a-button>
-            <a-icon type="mail" />
+            <v-icon name="md-markasunread" />
           </a-button>
         </a-tooltip>
         <a-tooltip title="延后" placement="bottom">
           <a-button>
-            <a-icon type="clock-circle" />
+            <v-icon name="md-accesstime" />
           </a-button>
         </a-tooltip>
         <a-tooltip title="添加到 Tasks" placement="bottom">
           <a-button>
-            <a-icon type="check-circle" />
+            <v-icon name="md-addtask-round" />
           </a-button>
         </a-tooltip>
 
@@ -49,17 +49,17 @@
 
         <a-tooltip title="移至" placement="bottom">
           <a-button>
-            <a-icon type="export" />
+            <v-icon name="md-drivefilemove" />
           </a-button>
         </a-tooltip>
         <a-tooltip title="标签" placement="bottom">
           <a-button>
-            <a-icon type="tag" />
+            <v-icon name="fa-tag" scale="0.9" />
           </a-button>
         </a-tooltip>
         <a-tooltip title="更多操作" placement="bottom">
           <a-button>
-            <a-icon type="more" />
+            <v-icon name="md-morevert" />
           </a-button>
         </a-tooltip>
       </div>
@@ -69,12 +69,12 @@
         <div class="pager">
           <a-tooltip title="较新" placement="bottom">
             <a-button>
-              <a-icon type="left" />
+              <v-icon name="md-chevronleft-round" />
             </a-button>
           </a-tooltip>
           <a-tooltip title="更早" placement="bottom">
             <a-button>
-              <a-icon type="right" />
+              <v-icon name="md-chevronright-round" />
             </a-button>
           </a-tooltip>
         </div>
@@ -143,6 +143,7 @@ export default {
         border-left $border
         margin-left 7px
         margin-right 12px
+        height 20px
   .article
     padding 17px 30px 20px 73px
     position relative
@@ -217,7 +218,7 @@ export default {
     .header
       padding 0 8px
       .operation
-        display none
+        display none !important
     .article
       padding-left 10px
       padding-right 10px

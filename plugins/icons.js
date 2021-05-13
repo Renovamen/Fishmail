@@ -1,7 +1,49 @@
 import Vue from "vue";
 import OhVueIcon from "oh-vue-icons";
 
-import { MdImage, MdImagenotsupportedRound } from "oh-vue-icons/icons";
+import {
+  MdMenuRound,
+  MdSearch,
+  MdArrowdropdown,
+  OiGear,
+  BiQuestionCircle,
+  MdImage,
+  MdArrowbackRound,
+  MdRefresh,
+  MdImagenotsupportedRound,
+  MdArchive,
+  IoAlertCircleSharp,
+  MdDelete,
+  MdMarkasunread,
+  MdAccesstime,
+  MdAddtaskRound,
+  MdDrivefilemove,
+  FaTag,
+  MdMorevert,
+  MdChevronleftRound,
+  MdChevronrightRound
+} from "oh-vue-icons/icons";
 
-OhVueIcon.add(MdImage, MdImagenotsupportedRound);
+OhVueIcon.add(
+  MdMenuRound,
+  MdSearch,
+  MdArrowdropdown,
+  OiGear,
+  BiQuestionCircle,
+  MdImage,
+  MdArrowbackRound,
+  MdRefresh,
+  MdImagenotsupportedRound,
+  MdArchive,
+  IoAlertCircleSharp,
+  MdDelete,
+  MdMarkasunread,
+  MdAccesstime,
+  MdAddtaskRound,
+  MdDrivefilemove,
+  FaTag,
+  MdMorevert,
+  MdChevronleftRound,
+  MdChevronrightRound
+);
 Vue.component("VIcon", OhVueIcon);

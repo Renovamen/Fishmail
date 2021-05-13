@@ -9,12 +9,12 @@
       <div class="operation">
         <a-tooltip title="刷新" placement="bottom">
           <a-button @click="refresh()">
-            <a-icon type="reload" />
+            <v-icon name="md-refresh" />
           </a-button>
         </a-tooltip>
         <a-tooltip title="更多操作" placement="bottom">
           <a-button>
-            <a-icon type="more" />
+            <v-icon name="md-morevert" />
           </a-button>
         </a-tooltip>
       </div>
@@ -24,12 +24,12 @@
         <div class="pager">
           <a-tooltip title="较新" placement="bottom">
             <a-button @click="changePage(-1)">
-              <a-icon type="left" />
+              <v-icon name="md-chevronleft-round" />
             </a-button>
           </a-tooltip>
           <a-tooltip title="较旧" placement="bottom">
             <a-button @click="changePage(1)">
-              <a-icon type="right" />
+              <v-icon name="md-chevronright-round" />
             </a-button>
           </a-tooltip>
         </div>

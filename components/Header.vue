@@ -3,7 +3,7 @@
     <div class="sitename">
       <a-tooltip title="主菜单" placement="bottom">
         <a-button class="sidebar-togger" @click="$emit('toggle-collapsed')">
-          <a-icon type="menu" />
+          <v-icon name="md-menu-round" scale="1.2" />
         </a-button>
       </a-tooltip>
       <div class="logo">
@@ -15,12 +15,12 @@
         <a-input placeholder="搜索邮件">
           <a-tooltip slot="prefix" title="搜索" placement="bottom">
             <a-button>
-              <a-icon type="search" />
+              <v-icon name="md-search" scale="1.1" />
             </a-button>
           </a-tooltip>
           <a-tooltip slot="suffix" title="显示搜索选项" placement="bottom">
             <a-button>
-              <a-icon type="caret-down" />
+              <v-icon name="md-arrowdropdown" scale="1.1" />
             </a-button>
           </a-tooltip>
         </a-input>
@@ -28,12 +28,12 @@
       <div class="info">
         <a-tooltip title="支持" placement="bottom">
           <a-button>
-            <a-icon type="question-circle" />
+            <v-icon name="bi-question-circle" scale="1.2" />
           </a-button>
         </a-tooltip>
         <a-tooltip title="设置" placement="bottom">
           <a-button>
-            <a-icon type="setting" />
+            <v-icon name="oi-gear" scale="1.2" />
           </a-button>
         </a-tooltip>
         <a-tooltip title="Google 应用" placement="bottom">
@@ -89,9 +89,6 @@ export default {
       height 45px
       margin-top 9px
       margin-left 0
-      .anticon
-        font-size 18px
-        margin-top 3px
     .logo
       width 178px
       float right
@@ -114,7 +111,7 @@ export default {
         button
           width 38px
           height 38px
-          .anticon
+          .ov-icon
             color $icon-color
           &:hover,
           &:active,
@@ -122,13 +119,8 @@ export default {
             background #E2E5E6
         .ant-input-prefix
           left 10px
-          .anticon
-            font-size 19px
-            margin-top 3px
         .ant-input-suffix
           right 10px
-          .anticon
-            margin-top 5px
       input
         height 100%
         border-radius 8px
@@ -153,11 +145,6 @@ export default {
         display flex
         align-items center
         justify-content center
-        .anticon
-          font-size 20px
-          margin-top 5px
-        .ov-icon
-          margin-top 2px
       .avatar
         margin-left 8px
         img

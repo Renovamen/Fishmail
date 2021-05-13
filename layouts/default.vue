@@ -71,6 +71,8 @@ body
     &:focus
       background #EFF0F0
       color $icon-color
+    .ov-icon
+      margin-top 2px
   .mailbox
     margin-left $sidebar-width
     margin-right $sidebar-width-right
@@ -97,11 +99,15 @@ body
           width 38px
           height 38px
           transition all 0.2s
+          display flex
+          align-items center
+          justify-content center
           &:hover
             color #202020
-          .anticon
-            font-size 16px
-            margin-top 3px
+        .operation
+          display flex
+          flex-direction row
+          align-items center
         .pagination
           display flex
           flex 1
@@ -112,10 +118,10 @@ body
             align-items center
           .pager
             margin-left 10px
+            display flex
+            flex-direction row
             button
               margin-right -2px
-              .anticon
-                font-size 10px
   .side-collapsed
     .mailbox
       margin-left $sidebar-width-collapsed
