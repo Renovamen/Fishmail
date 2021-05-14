@@ -6,7 +6,8 @@
 
 你看得出来有什么问题吗，不你看不出来：
 
-![screenshot](./docs/screenshot.png)
+![screenshot](./screenshot/screenshot.png)
+
 
 &nbsp;
 
