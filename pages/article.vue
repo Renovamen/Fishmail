@@ -18,7 +18,7 @@
         </a-tooltip>
         <a-tooltip title="列为垃圾邮件" placement="bottom">
           <a-button>
-            <v-icon name="io-alert-circle-sharp" />
+            <v-icon name="bi-exclamation-octagon-fill" />
           </a-button>
         </a-tooltip>
         <a-tooltip title="删除" placement="bottom">
