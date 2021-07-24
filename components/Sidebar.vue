@@ -77,7 +77,13 @@
           />
           <span class="text">动态</span>
         </a-menu-item>
-        <a-menu-item key="3" @click="select('forum') && goGithub">
+        <a-menu-item
+          key="3"
+          @click="
+            select('forum');
+            goGithub();
+          "
+        >
           <img
             src="https://www.gstatic.com/images/icons/material/system/2x/forum_black_20dp.png"
           />
