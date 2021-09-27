@@ -13,6 +13,7 @@ ignorePatterns:
   - node_modules/
   - dist/
   - .nuxt/
+  - .husky/
 
 rules:
   no-unused-vars:
